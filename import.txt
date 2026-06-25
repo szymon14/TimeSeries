@@ -1,0 +1,6 @@
+pandas
+plotly
+holidays
+requests
+bs4
+scipy
