@@ -1,11 +1,14 @@
 import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 
+from Utils import z_score
+
+
 def matrix_profile(m, df_clean, str1, str2):
     s1 = df_clean[str1].astype(float).values
     s2 = df_clean[str2].astype(float).values
-    s1_scaled = (s1 - s1.mean()) / s1.std()
-    s2_scaled = (s2 - s2.mean()) / s2.std()
+    s1_scaled = z_score(s1)
+    s2_scaled = z_score(s2)
     
     n = min(len(s2_scaled), len(s1_scaled))
     s1_scaled, s2_scaled = s1_scaled[:n], s2_scaled[:n]

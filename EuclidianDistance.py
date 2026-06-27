@@ -5,7 +5,7 @@ from fastdtw import fastdtw
 from Utils import evaluate_series, z_score, calculate_distance
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
-from scipy.spatial.distance import squareform
+from scipy.spatial.distance import squareform, pdist
 from sklearn.preprocessing import StandardScaler
 
 data = pd.read_csv('policja_info.csv', delimiter=',')
@@ -153,6 +153,7 @@ for s in szeregi:
     ]
     features_list.append(features)
 
+#macierz X_features ma wymiary 11 x 14
 X_features = np.array(features_list)
 
 # standaryzacja cech potrzebna bo mają różne skale i jednostki
@@ -160,6 +161,14 @@ X_features_scaled = StandardScaler().fit_transform(X_features)
 
 # generowanie połączeń dla macierzy cech
 linkage_features = linkage(X_features_scaled, method="single")
+
+# Wizualizacja macierzy odległości dla cech
+plt.figure(figsize=(8, 6))
+plt.imshow(squareform(pdist(X_features_scaled)), cmap='viridis')
+plt.colorbar(label='Odległość Euklidesowa')
+plt.title("Macierz odległości między szeregami (Features)")
+plt.show()
+
 
 # rysowanie dendrogramu dla wybranych cech
 plt.figure(figsize=(8, 6))

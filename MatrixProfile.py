@@ -46,6 +46,6 @@ fig, axes = plt.subplots(4, 1, sharex=True, figsize=(16, 22), constrained_layout
 idx7 = analiza_szeregu_mp(7, axes[0:2])
 idx30 = analiza_szeregu_mp(30, axes[2:4])
 print("Anomalia m=7:\n", df_clean.iloc[idx7])
-print("\nAnomalia m=30:\n", df_clean.iloc[idx30])
+print("Anomalia m=7:\n", df_clean.iloc[idx7]) # na z-score mamy odległość blisko 6 czyli aż 6 odchyleń standardowych od średniej na matrix profile mamy odległość 4 czyli odległość od najbliższego elementu
 plt.show()
 ######### górki dla 30 dni są dłuższe bo dłużej pamięta anomalie
