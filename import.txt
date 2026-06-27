@@ -4,3 +4,5 @@ holidays
 requests
 bs4
 scipy
+fastdtw
+scikit-learn
